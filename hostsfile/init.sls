@@ -5,9 +5,9 @@
 # example configuration for /etc/salt/minion:
 #
 # mine_functions:
-#  network.ip_addrs:
-#    - eth1
-#  mine_interval: 2
+#   network.ip_addrs:
+#     - eth1
+#   mine_interval: 2
 
 {%- set addrs = salt['mine.get']('*', 'network.ip_addrs') %}
 
@@ -22,4 +22,3 @@
 {% endfor %}
 
 {% endif %}
-
