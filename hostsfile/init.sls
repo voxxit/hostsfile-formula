@@ -2,14 +2,13 @@
 # the minion id has to be the fqdn for this to work
 
 {%- set fqdn = grains['id'] %}
-# example configuration for /etc/salt/minion:
+# example configuration for /etc/salt/master:
 #
-# mine_functions:
-#   network.ip_addrs:
-#     - eth1
-#   mine_interval: 2
+# peer:
+#   .*:
+#     - network.ip_addrs
 
-{%- set addrs = salt['mine.get']('*', 'network.ip_addrs') %}
+{%- set addrs = salt['publish.publish']('*', 'network.ip_addrs', 'eth0') %}
 
 {%- if addrs is defined %}
 
